@@ -7,7 +7,7 @@
 2. Clone your forked repository locally:
 
    ```bash
-   git clone
+   git clone https://github.com/CodeingHive/CodeingHive-Server-main
    ```
 
 3. Create a new branch for your feature or bug fix:
