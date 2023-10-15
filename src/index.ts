@@ -1,5 +1,6 @@
-import express from 'express';
-import bodyParser from 'body-parser';
+const express = require('express');
+const bodyParser = require('body-parser');
+
 import codeRouter from './route/submit-code';
 
 const app = express();

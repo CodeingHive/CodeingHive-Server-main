@@ -1,8 +1,9 @@
-import express, { Request, Response, Router } from 'express';
+const express = require('express');
 import { spawn } from 'child_process';
-import fs from 'fs';
+import * as fs from 'fs';
 import { performance } from 'perf_hooks';
 import { randomBytes } from 'crypto';
+import { Request, Response, Router } from 'express';
 
 const codeRouter: Router = express.Router();
 
@@ -43,7 +44,7 @@ async function processJob(job: {
     const startTime = performance.now();
 
     if (language === 'cpp') {
-        fs.writeFile(randomFileName, userCode, (err) => {
+        fs.writeFile(randomFileName, userCode, (err: any) => {
             if (err) {
                 return job.res.status(500).json({ message: 'Error writing code to file' });
             }
@@ -73,12 +74,12 @@ async function processJob(job: {
                             jobQueue.splice(jobIndex, 1);
                         }
                         // Delete the temporary files
-                        fs.unlink(randomFileName, (err) => {
+                        fs.unlink(randomFileName, (err: any) => {
                             if (err) {
                                 console.error('Error deleting file:', err);
                             }
                         });
-                        fs.unlink('user_code', (err) => {
+                        fs.unlink('user_code', (err: any) => {
                             if (err) {
                                 console.error('Error deleting file:', err);
                             }
@@ -96,7 +97,7 @@ async function processJob(job: {
                         jobQueue.splice(jobIndex, 1);
                     }
                     // Delete the temporary files
-                    fs.unlink(randomFileName, (err) => {
+                    fs.unlink(randomFileName, (err: any) => {
                         if (err) {
                             console.error('Error deleting file:', err);
                         }
@@ -109,7 +110,7 @@ async function processJob(job: {
             });
         });
     } else if (language === 'python') {
-        fs.writeFile(randomFileName, userCode, (err) => {
+        fs.writeFile(randomFileName, userCode, (err: any) => {
             if (err) {
                 return job.res.status(500).json({ message: 'Error writing code to file' });
             }
@@ -133,7 +134,7 @@ async function processJob(job: {
                     jobQueue.splice(jobIndex, 1);
                 }
                 // Delete the temporary files
-                fs.unlink(randomFileName, (err) => {
+                fs.unlink(randomFileName, (err: any) => {
                     if (err) {
                         console.error('Error deleting file:', err);
                     }
@@ -145,7 +146,7 @@ async function processJob(job: {
             });
         });
     } else if (language === 'java') {
-        fs.writeFile(randomFileName, userCode, (err) => {
+        fs.writeFile(randomFileName, userCode, (err: any) => {
             if (err) {
                 return job.res.status(500).json({ message: 'Error writing code to file' });
             }
@@ -175,12 +176,12 @@ async function processJob(job: {
                             jobQueue.splice(jobIndex, 1);
                         }
                         // Delete the temporary files
-                        fs.unlink(randomFileName, (err) => {
+                        fs.unlink(randomFileName, (err: any) => {
                             if (err) {
                                 console.error('Error deleting file:', err);
                             }
                         });
-                        fs.unlink('user_code.class', (err) => {
+                        fs.unlink('user_code.class', (err: any) => {
                             if (err) {
                                 console.error('Error deleting file:', err);
                             }
@@ -198,7 +199,7 @@ async function processJob(job: {
                         jobQueue.splice(jobIndex, 1);
                     }
                     // Delete the temporary files
-                    fs.unlink(randomFileName, (err) => {
+                    fs.unlink(randomFileName, (err: any) => {
                         if (err) {
                             console.error('Error deleting file:', err);
                         }
