@@ -1,118 +1,117 @@
 # Codeing Hive Server
 
-## Setup:
+Welcome to the Codeing Hive Server repository! This server powers a dynamic platform for coding challenges, contests, and user submissions. Below, you'll find a comprehensive guide to set up the server, contribute to the project, and an overview of the current to-do list.
 
-1. clone the repo
-``` bash
-git clone https://github.com/CodeingHive/CodeingHive-Server-main.git
-cd CodeingHive-Server-main
-```
+Feel free to explore, contribute, and make this platform even better! If you have any questions or suggestions, don't hesitate to reach out.
 
+## Table of Contents
 
-2. setup repository
+- [Setup](#)
+- [Start the Server](#)
+- [Restart Database](#)
+- [Contributing](#)
+- [TODO List](#)
+  - [Milestone 1](#)
+  - [Milestone 2](#)
 
-> using bash script
+## Setup
 
-```bash
-bash run.sh -i
-```
+1. **Clone the Repo:**
+    ```bash
+    git clone https://github.com/CodeingHive/CodeingHive-Server-main.git
+    cd CodeingHive-Server-main
+    ```
 
-> using terminal commands
+2. **Setup Repository:**
+    - Using bash script:
+        ```bash
+        bash run.sh -i
+        ```
 
-``` bash
-npm i
-cp .env.example .env
-docker compose up dev-db -d
-npx prisma migrate dev --name init
-npx prisma migrate deploy
-```
+    - Using terminal commands:
+        ```bash
+        npm i
+        cp .env.example .env
+        docker compose up dev-db -d
+        npx prisma migrate dev --name init
+        npx prisma migrate deploy
+        ```
 
+3. **Start the Server:**
+    - Using bash script:
+        ```bash
+        bash run.sh -d
+        # To start db visual preview
+        bash run.sh -db
+        ```
 
-3. start the server
+    - Using terminal commands:
+        ```bash
+        # Visit http://localhost:3000 to visualize APIs and schema
+        npm run start:dev
+        # To start db visual preview
+        npx prisma studio
+        ```
 
-> using bash script
+4. **Restart Database:**
+    - Using bash script:
+        ```bash
+        bash run.sh -r
+        ```
 
-```bash
-bash run.sh -d
-
-# to start db visual preview
-bash run.sh -db
-```
-
-> using terminal commands
-
-``` bash
-# visit http://localhost:3000 to visualize api's and schema
-npm run start:dev
-
-# to start db visual preview
-npx prisma studio
-```
-
-4. Restart db:
-
-> using bash script
-
-```bash
-bash run.sh -r
-```
-
-> using terminal commands
-
-``` bash
-  docker compose rm dev-db -s -f -v
-  docker compose up dev-db -d
-  npx prisma migrate dev --name init
-  npx prisma migrate deploy
-```
-
+    - Using terminal commands:
+        ```bash
+        docker compose rm dev-db -s -f -v
+        docker compose up dev-db -d
+        npx prisma migrate dev --name init
+        npx prisma migrate deploy
+        ```
 
 ## Contributing
 
-All Contributions are appreciated.
+All contributions are appreciated. Whether you're fixing a bug, adding a new feature, or improving documentation, your efforts make a difference. Please refer to the [Contribution Guidelines](CONTRIBUTING.md) for more details.
 
-## TODO
+## TODO List
 
 ### MILESTONE-1:
 
+- [x] **Auth**
+    - [x] `POST /auth/signup` - Signup
+    - [x] `POST /auth/signin` - Signin
 
-[x] Auth
-    - [x] make POST /auth/signup     to   signup
-    - [x] make POST /auth/signin     to   signin
+- [ ] **User**
+    - [ ] `GET /user/:id` - Get user with ID: id
+    - [ ] `GET /user` - Get all users
+    - [ ] `PUT /user/:id` - Update user with ID: id
+    - [ ] `GET /user?q=` - Sort query users
 
-[ ] User
-    - [ ] make GET /user/:id         to   get user with id: id
-    - [ ] make GET /user             to   get all users
-    - [ ] make PUT /user/:id         to   update user with id: id
-    - [ ] make GET /user?q=          sort query users
+- [ ] **Problem**
+    - [ ] `GET /problem/:id` - Get problem with ID: id
+    - [ ] `GET /problem` - Get all problems
+    - [ ] `GET /problem?q=` - Sort query problems
 
-[ ] Problem
-    - [ ] make GET /problem/:id      to   get problem with id: id
-    - [ ] make GET /problem          to   get all problems
-    - [ ] make GET /problem?q=       so  rt query problems
-
-[ ] Submission
-    - [ ] make GET /submission/:id   to   get submission with id: id
-    - [ ] make GET /submission       to   get all submissions
-    - [ ] make POST /submission      to   submit a solution
-    - [ ] make GET /submission?q=    sort query submissions
-
-[ ] Update schema.prisma
-
-
+- [ ] **Submission**
+    - [ ] `GET /submission/:id` - Get submission with ID: id
+    - [ ] `GET /submission` - Get all submissions
+    - [ ] `POST /submission` - Submit a solution
+    - [ ] `GET /submission?q=` - Sort query submissions
 
 ### MILESTONE-2:
 
-[ ] Contest
-    - [ ] make GET /contest/:id      to   get contest with id: id
-    - [ ] make GET /contest          to   get all contests
-    - [ ] make POST /contest         to   create a contest
-    - [ ] make PUT /contest/:id      to   update contest with id: id
-    - [ ] make GET /contest?q=       sort query contests
+- [ ] **Contest**
+    - [ ] `GET /contest/:id` - Get contest with ID: id
+    - [ ] `GET /contest` - Get all contests
+    - [ ] `POST /contest` - Create a contest
+    - [ ] `PUT /contest/:id` - Update contest with ID: id
+    - [ ] `GET /contest?q=` - Sort query contests
 
-[ ] Contest Problem
-    - [ ] make GET /contest/:id/problem/:id   to   get contest problem with id: id
-    - [ ] make GET /contest/:id/problem       to   get all contest problems
-    - [ ] make POST /contest/:id/problem      to   create a contest problem
-    - [ ] make PUT /contest/:id/problem/:id   to   update contest problem with id: id
-    - [ ] make GET /contest/:id/problem?q=    sort query contest problems
+- [ ] **Contest Problem**
+    - [ ] `GET /contest/:id/problem/:id` - Get contest problem with ID: id
+    - [ ] `GET /contest/:id/problem` - Get all contest problems
+    - [ ] `POST /contest/:id/problem` - Create a contest problem
+    - [ ] `PUT /contest/:id/problem/:id` - Update contest problem with ID: id
+    - [ ] `GET /contest/:id/problem?q=` - Sort query contest problems
+
+- [ ] Update `schema.prisma`
+
+Happy coding!
