@@ -5,6 +5,7 @@ if [ "$1" == "-i" ]; then
   # Install dependencies and start the development server
   npm i
   docker compose up dev-db -d
+  prisma migrate dev
   prisma migrate deploy
   npm run start:dev
 elif [ "$1" == "-r" ]; then

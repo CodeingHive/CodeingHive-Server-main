@@ -8,44 +8,39 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  username String @unique
-  email    String @unique
+  id        Int        @id @default(autoincrement())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  email     String     @unique
+  hash      String
+  token     String?
+  fullname  String?
+  username  String?    @unique
+  Solution  Solution[]
 
-  fullname String
-  password String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  Solution Solution[]
+  @@map("users")
 }
 
 model Problem {
-  id Int @id @default(autoincrement())
-
+  id               Int        @id @default(autoincrement())
   title            String
   description      String
   difficulty       String
   problemStatement String
-  testCases        String
-
-  Solution Solution[]
+  testCases        String[]
+  createdAt        DateTime   @default(now())
+  Solution         Solution[]
 }
 
 model Solution {
-  id Int @id @default(autoincrement())
-
-  code     String
-  language String
-  status   String
-
+  id        Int      @id @default(autoincrement())
+  code      String
+  language  String
+  status    String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
   userId    Int
   problemId Int
-
-  user    User    @relation(fields: [userId], references: [id])
-  problem Problem @relation(fields: [problemId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
+  problem   Problem  @relation(fields: [problemId], references: [id])
 }
