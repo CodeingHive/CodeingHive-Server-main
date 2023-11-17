@@ -13,6 +13,8 @@ model User {
   updatedAt DateTime   @updatedAt
   email     String     @unique
   hash      String
+  rank      Int?
+  githubId  String?
   token     String?
   fullname  String?
   username  String?    @unique
